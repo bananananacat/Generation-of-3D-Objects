@@ -30,3 +30,4 @@ def render_from_view(camera_location, target_location, output_path, image_format
     bpy.data.objects.remove(camera)
     bpy.data.objects.remove(target)
 
+
