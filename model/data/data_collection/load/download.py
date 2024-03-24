@@ -2,8 +2,8 @@ import requests
 import shutil
 import os
 
-import auth
-from .glb_to_obj import *
+from . import auth
+from .glb_to_obj import import_glb, export_obj
 
 download_url = "https://api.sketchfab.com/v3/models/{}/download"
 
