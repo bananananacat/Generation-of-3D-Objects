@@ -1,16 +1,13 @@
-from .auth import set_api_token
-from .download import download_model, convert_to_obj, clear_extra_files
-from .search import search_results
+from auth import set_api_token
+from download import download_model, convert_to_obj, clear_extra_files
+from search import search_results
 import time
 
-api_roken = "d742ad6800dd425dafcbd70aac21778a"
+api_roken = "2d5aab9ed87f4c7cb2257a3e05a243ef"
 save_path = "./store"
 
 names = [
-    'apple', 'book', 'car', 'dog', 'elephant', 'flower', 'guitar', 'house', 'ice cream', 'jacket',
-    'key', 'lion', 'moon', 'nest', 'ocean', 'pencil', 'queen', 'rabbit', 'sun', 'tree',
-    'umbrella', 'violin', 'watch', 'xylophone', 'yacht', 'zebra',
-    'ball', 'cat', 'desk', 'ear', 'fish', 'grape', 'hat', 'ink', 'jar', 'kite',
+    'ear', 'fish', 'grape', 'hat', 'ink', 'jar', 'kite',
     'lamp', 'map', 'notebook', 'orange', 'pen', 'quilt', 'rose', 'sock', 'table', 'umbrella',
     'vase', 'watermelon', 'xylophone', 'yogurt', 'zeppelin', 'apple', 'bird', 'cookie', 'duck', 'egg',
     'fork', 'glove', 'harp', 'island', 'jigsaw', 'kangaroo', 'lemon', 'mango', 'note', 'orange',
@@ -27,7 +24,7 @@ names = [
     'rainbow', 'squirrel', 'tiger', 'umbrella', 'violin', 'watermelon', 'xylophone', 'yogurt', 'zeppelin'
 ]
 
-counter = 0
+counter = 210
 
 for name in names:
 

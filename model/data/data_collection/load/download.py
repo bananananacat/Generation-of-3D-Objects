@@ -2,8 +2,8 @@ import requests
 import shutil
 import os
 
-from . import auth
-from .glb_to_obj import import_glb, export_obj
+from glb_to_obj import import_glb, export_obj
+import auth
 
 download_url = "https://api.sketchfab.com/v3/models/{}/download"
 
@@ -18,7 +18,10 @@ def _get_download_url(uid):
         },
     )
 
-    data = r.json()
+    try:
+        data = r.json()
+    except ValueError:
+        pass
 
     assert r.ok, f"Failed to get url {uid}: {r.status_code} - {data}"
 
@@ -38,6 +41,8 @@ def download_model(model_uid, file_path, id):
     data = _get_download_url(model_uid)
 
     download_path = os.path.join(file_path, f"{model_uid}.zip")
+    
+    assert data['size'] / (1024 * 1024) < 100, "Too large model"
     
     print(f"Downloading model, size {(data['size'] / (1024 * 1024)):.1f}MB")
     with requests.get(data["url"], stream=True) as r:
