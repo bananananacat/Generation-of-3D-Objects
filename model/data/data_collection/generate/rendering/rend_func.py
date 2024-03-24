@@ -6,7 +6,7 @@ from mathutils import Vector
 def render_from_view(camera_location, target_location, output_path, name, i, image_format='PNG', resolution=(1920, 1080)):
     bpy.context.scene.render.resolution_x = resolution[0]
     bpy.context.scene.render.resolution_y = resolution[1]
-
+    
     bpy.ops.object.camera_add(location=camera_location)
     camera = bpy.context.object
     
