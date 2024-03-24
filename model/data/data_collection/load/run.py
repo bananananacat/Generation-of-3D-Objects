@@ -1,4 +1,6 @@
-from . import set_api_token, download_model, search_results, convert_to_obj, clear_extra_files
+from .auth import set_api_token
+from .download import download_model, convert_to_obj, clear_extra_files
+from .search import search_results
 import time
 
 api_roken = "d742ad6800dd425dafcbd70aac21778a"
@@ -53,4 +55,4 @@ for name in names:
             time.sleep(2)
             counter += 1
         except Exception as e:
-            print(e.message)
+            print(e.message) 
