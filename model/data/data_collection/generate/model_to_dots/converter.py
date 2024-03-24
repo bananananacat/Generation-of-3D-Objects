@@ -40,7 +40,7 @@ class Converter:
         return mathutils.Vector(max_point)
       
       
-      def erase_extra_objects(self, erase_list):
+    def erase_extra_objects(self, erase_list):
         for mesh in erase_list:
             bpy.ops.object.select_all(action='DESELECT')
             bpy.data.objects[mesh].select_set(True)    
