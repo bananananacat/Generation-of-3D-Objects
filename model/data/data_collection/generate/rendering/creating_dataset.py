@@ -51,3 +51,4 @@ for file_name in os.listdir(models_folder):
         for obj in bpy.data.objects:# после рендера с 10 ракурсов удаляем все кроме света, камеру удаляем на каждой итерациии и создаем заново
             if obj.type != 'LIGHT':
                 bpy.data.objects.remove(obj, do_unlink=True)
+
