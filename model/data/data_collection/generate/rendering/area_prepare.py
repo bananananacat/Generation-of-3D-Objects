@@ -25,7 +25,6 @@ def get_cube_points():
     
 
 def add_lights(locations):
-    
     for location in locations:
         bpy.ops.object.light_add(type='POINT', radius=1, align='WORLD', location=location)
     
