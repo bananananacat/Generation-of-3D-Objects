@@ -9,6 +9,6 @@ class Normalizer(Transormer):
         self.move_objects(min_point + (max_point - min_point) / 2)
 
 
-    def normilize_to_unit_radius(self):
+    def normalize_to_unit_radius(self):
         r = self.find_max_by_euclidian()
         self.scale_objects((1/r, 1/r, 1/r))
