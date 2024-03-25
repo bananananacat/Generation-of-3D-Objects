@@ -1,7 +1,7 @@
 from .model_transformer import Transormer
 
 
-class Normilizer(Transormer):
+class Normalizer(Transormer):
     
     def move_to_zero(self):
         min_point = self.find_min_point()
