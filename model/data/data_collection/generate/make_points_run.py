@@ -5,7 +5,7 @@ from model_to_dots import Converter
 models_path = "../load/store"
 out_path = "./points"
 
-for file in sorted(os.listdir(models_path)):
+for file in os.listdir(models_path):
     if file.endswith(".obj"):
         file_path = os.path.join(models_path, file)
         
