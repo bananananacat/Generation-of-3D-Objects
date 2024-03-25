@@ -49,6 +49,3 @@ class Render:
         bpy.data.images['Render Result'].save_render(filepath=output_path + "/" + f"{name}_{i}.png") # адекватное название рендеров с разных ракурсов
         bpy.data.objects.remove(camera)
         #bpy.data.objects.remove(target) - мб не понадобится, тк в creating_dataset удаляем все кроме света каждую итерацию
-    
-    
-    
