@@ -79,18 +79,3 @@ class Transormer:
 
     def export_obj(self, export_path):
         bpy.ops.wm.obj_export(filepath=export_path)
-
-
-'''
-# example 
-
-file_path = 'land-rover-range-rover-velar-2018-1.snapshot.5/Land-Rover_Range_Rover_Velar_First_edition_HQinterior_2018.obj'
-export_path = 'first_export.obj'
-csv_path = 'coords.csv'  
-
-if __name__ == '__main__':
-    convert_car = Converter(file_path)
-    convert_car.move_objects(convert_car.find_min_point())
-    convert_car.make_points_output(csv_path)
-'''
-    

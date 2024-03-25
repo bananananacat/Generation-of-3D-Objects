@@ -14,5 +14,3 @@ for file in os.listdir(models_path):
                 
         convert_model = Converter(file_path)
         convert_model.make_points_output(current_out_path)
-
-    
