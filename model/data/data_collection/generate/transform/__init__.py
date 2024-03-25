@@ -1,2 +1,2 @@
-from .normalizer import Normilizer
+from .normalizer import Normalizer
 from .model_transformer import Transormer
