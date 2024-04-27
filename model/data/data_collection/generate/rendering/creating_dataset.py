@@ -40,7 +40,7 @@ for i in list:
             bpy.ops.object.light_add(type='POINT', radius=1, align='WORLD', location=(i, j, k))
    
 for file_name in os.listdir(models_folder):
-    if file_name.endswith(".obj"):
+    if file_name.endswith("cow2.obj"):
         model_path = os.path.join(models_folder, file_name)
         bpy.ops.wm.obj_import(filepath=model_path)
         name = file_name[:-4]
