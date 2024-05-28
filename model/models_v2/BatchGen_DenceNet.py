@@ -1,4 +1,4 @@
-#BatchGen for DenseNet, (point cloud(1024 points) --- point cloud(2048 points))
+#Batch Generation for DenseNet, (point cloud(1024 points) --- point cloud(2048 points))
 
 shapenet_id_to_category = {
 '02691156': 'airplane',
