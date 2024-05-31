@@ -35,11 +35,9 @@ This Model, Encoders, Decoders, functions and train script are locating in [here
 
 ### Losses && Metrics
 
-For loss we decided to use Chamfer Distance(you can import it from kaolin lib), because it suits the purpose of our task and is faster then, for example, EMD loss. Also, was written custom point loss(you can see it in train_scripts -#TODO) - it ... #TODO. F score was used as metric to evaluate quality of point clouds.
+For loss we decided to use Chamfer Distance(you can import it from kaolin lib), because it suits the purpose of our task and is faster than, for example, EMD loss. Also, was written custom point loss(you can see it in [here](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/models/v2_generation/utils/losses.py)) - it punishes for many points nearby. F score was used as metric to evaluate quality of point clouds.
 
 ### Dataset
 
 We create our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset #TODO написать что для трейна что для валидации
 There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera & lights, functions to create dataset, etc.
-
-### Website #TODO
