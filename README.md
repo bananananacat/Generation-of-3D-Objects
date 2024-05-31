@@ -27,9 +27,9 @@ foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amaz
 
 ### Latent matching model
 
-Generate dot clouds from n images. Firtsly I train autoencoder from dots cloud to same dots cloud. This part using 1D convolutional
-encoder and fully-connected decoder. After that I train image convolutional encoder and latent matching autoencoder encoder and image 
-encoder. 
+Generate point clouds from n images. Firstly, Autoencoder: from point cloud to same point cloud. This part is using 1D convolutional
+Encoder and fully-connected Decoder. After that - image convolutional Encoder and latent matching Autoencoder and image 
+Encoder. 
 
 This Model, Encoders, Decoders, Batch loader and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/v2_generation)
 
