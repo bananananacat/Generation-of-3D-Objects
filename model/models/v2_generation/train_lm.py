@@ -1,27 +1,28 @@
-import torch 
+import torch
+import pickle
 import torch.nn as nn
 
 from utils import ImageEncoder
 from utils import EncoderDecoder
-from utils import valid
+from utils import valid_lm
 from utils.loaders.batch_gen import BatchGen
+
+from paths import *
 
 
 if __name__ == "__main__":
-    path1 = '../data/ShapeNetRendering/ShapeNetRendering'
-    path2 = '../data/ShapeNet_pointclouds/ShapeNet_pointclouds'
-    json_path = 'splits/train_models.json'
-    json_path2 = 'splits/val_models.json'
     params = {'batch_size': 16, 'shuffle': True}
     num_epoch = 5
+    l_r = 1e-4
     counter = 0
+    valid_path = 'valid_data/valid_lm.pkl'
 
-    training_set = BatchGen(json_path, path1, path2)
-    valid_set = BatchGen(json_path2, path1, path2)
+    training_set = BatchGen(json_path_train, data_images_path, data_points_path)
+    valid_set = BatchGen(json_path_val, data_images_path, data_points_path)
     training_generator = torch.utils.data.DataLoader(training_set, **params)
 
     encoder_decoder = EncoderDecoder()
-    encoder_decoder.load_state_dict(torch.load('trained_models/encoder_decoder.pt'))
+    encoder_decoder.load_state_dict(torch.load(dots_encoder_decoder_path))
     encoder_decoder.to('cuda')
 
     # turn off encoder grads
@@ -32,7 +33,9 @@ if __name__ == "__main__":
     image_encoder.to('cuda')
 
     mse_loss = nn.MSELoss()
-    image_encoder_optim = torch.optim.Adam(image_encoder.parameters(), lr=1e-4)
+    image_encoder_optim = torch.optim.Adam(image_encoder.parameters(), lr=l_r)
+
+    valid_dict = {'step' : [], 'valid' : []}
 
     for i in range(num_epoch):
         for data, image in training_generator:
@@ -50,11 +53,17 @@ if __name__ == "__main__":
 
             loss.backward()
             image_encoder_optim.step()
-            
+
             if counter % 50 == 0:
                 print(counter, loss)
-                
+
             if counter % 100 == 0:
-                print(valid(image_encoder, encoder_decoder.decoder, valid_set))
+                valid_value = valid_lm(image_encoder, encoder_decoder.decoder, valid_set)
+                print(counter, valid_value)
+                valid_dict['step'].append(counter)
+                valid_dict['valid'].append(valid_value)
+
+    with open(valid_path, 'wb') as file:
+        pickle.dump(valid_dict, file)
         
-    torch.save(image_encoder.state_dict(), 'image_encoder.pt')
+    torch.save(image_encoder.state_dict(), image_encoder_path)

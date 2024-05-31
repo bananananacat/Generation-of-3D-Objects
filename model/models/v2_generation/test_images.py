@@ -6,11 +6,11 @@ from utils import ImageEncoder
 from utils import EncoderDecoder
 from utils.loaders import ValidLoader
 
+from .paths import *
+
 
 if __name__ == "__main__":
-    files_path = '../data2'
-    dots_encoder_decoder_path = 'trained_models/encoder_decoder.pt'
-    image_encodert_path = 'trained_models/image_encoder.pt'
+    files_path = '../data_test'
     
     encoder_decoder = EncoderDecoder()
     encoder_decoder.load_state_dict(torch.load(dots_encoder_decoder_path))
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     encoder_decoder.eval()
 
     image_encoder = ImageEncoder()
-    image_encoder.load_state_dict(torch.load('image_encodert_path'))
+    image_encoder.load_state_dict(torch.load(image_encoder_path))
     image_encoder.to('cuda')
 
     fig = plt.figure(figsize=(12, 12))
