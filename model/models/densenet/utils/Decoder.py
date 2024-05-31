@@ -1,5 +1,3 @@
-
-
 class Decoder(nn.Module):
     def __init__(self, input_size, layer_sizes=[512, 1024, 2048, 1024, 512, 3]):
         super().__init__()
