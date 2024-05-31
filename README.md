@@ -1,4 +1,4 @@
-# Generation-of-3D-Objects
+# Generation-of-Point-Clouds
 HSE course project (2nd year)
 
 
