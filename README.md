@@ -28,7 +28,7 @@ foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amaz
 ### Latent matching model
 
 Generate point clouds from n images. Firstly, Autoencoder: from point cloud to same point cloud. This part is using 1D convolutional
-Encoder and fully-connected Decoder. After that - image convolutional Encoder and latent matching Autoencoder and image 
+Encoder and fully-connected Decoder. After that - image convolutional Encoder, latent matching Autoencoder and image 
 Encoder. 
 
 This Model, Encoders, Decoders, Batch loader and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/v2_generation)
@@ -51,4 +51,4 @@ Alse we combine Chamfer loss with custom point loss, which prevents points from 
 ### Dataset
 
 We created our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset.
-There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera & lights, functions to create dataset, etc.
+There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera and lights, functions to create dataset, etc.
