@@ -41,7 +41,7 @@ class BatchGen:
 
         if self.random:
             num = len(os.listdir(image_path)) - 2
-            size = randint(self.min_size, min(self, num)) 
+            size = randint(self.min_size, min(self.max_size, num)) 
             rnd = np.random.choice(num, size, replace=False)
             images = self.image_loader.open_image(os.path.join(image_path, str(rnd[0]).zfill(2) + '.png'))
             
