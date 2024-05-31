@@ -1,0 +1,12 @@
+numpy==1.24.4
+pandas==2.1.0
+matplotlib==3.8.0
+torch==2.1.1
+torchvision==0.16.1
+torchaudio==2.1.1
+kaolin==0.15.0
+scikit-learn==1.2.2
+tqdm==4.65.0
+Pillow==9.5.0
+bpy==3.3.0
+mathutils==2.92.0
