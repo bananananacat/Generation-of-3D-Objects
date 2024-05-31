@@ -2,8 +2,8 @@
 HSE course project (2nd year)
 
 
-# Overview
-
+### Overview
+Our goal is a website with models that generate a point cloud from given any number of photos from different angles 
 
 ### Team:
 - Lebedev Vasiliy
