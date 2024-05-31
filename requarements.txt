@@ -10,3 +10,4 @@ tqdm==4.65.0
 Pillow==9.5.0
 bpy==3.3.0
 mathutils==2.92.0
+Django==5.0.6
