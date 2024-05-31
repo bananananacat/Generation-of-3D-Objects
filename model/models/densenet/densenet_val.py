@@ -1,4 +1,4 @@
-def valid(model, valid_set, num_examples = 100):
+def val(model, valid_set, num_examples = 100):
     model = model.to('cuda') 
     elems = np.random.choice(len(valid_set), num_examples)
     metric = torch.tensor([0.0])
