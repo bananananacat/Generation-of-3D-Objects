@@ -12,7 +12,7 @@ HSE course project (2nd year)
 Our goal is a website with models, that generate a point cloud from given any number of photos from different angles. We used some ideas from this articles([latent matching for reconstruction of point cloud](https://arxiv.org/pdf/1807.07796); [dense reconstruction of point cloud](https://arxiv.org/pdf/1901.08906v1)) and relevant repos([latent matching](https://github.com/val-iisc/3d-lmnet/tree/master); [dense](https://github.com/val-iisc/densepcr/tree/master)).
 
 
-### Installing Requarements (.txt, #TODO)
+### Installing Requarements
 
 ```console
 foo@bar:~$ pip3 install -r requirements.txt
@@ -46,7 +46,7 @@ Also, [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main
 
 For loss we decided to use Chamfer Distance(you can import it from kaolin lib), because it suits the purpose of our task and is faster than, for example, EMD loss. F score was used as metric to evaluate quality of point clouds.
 
-Alse we combine Chamfer loss with custom point loss, which prevents points from accumulating in one place(you can see it in [here](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/models/v2_generation/utils/losses.py))
+Also we combined Chamfer loss with custom point loss, which prevents points from accumulating in one place(you can see it in [here](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/models/v2_generation/utils/losses.py))
 
 ### Dataset
 
