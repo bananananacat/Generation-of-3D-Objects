@@ -47,5 +47,5 @@ Alse we combine Chamfer loss with custom point loss, which prevents points from 
 
 ### Dataset
 
-We create our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset #TODO написать что для трейна что для валидации
+We create our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset.
 There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera & lights, functions to create dataset, etc.
