@@ -15,4 +15,19 @@ Our goal is a website with models, that generate a point cloud from given any nu
 
 ### Dense model
 
-This model is working with quality of point clouds: for example, for given 1024 points it will return you k * 1024 points. This model has 2 different custom Encoders and one Decoder. 
+This model is working with quality of point clouds: for example, for given 1024 points it will return you k * 1024 points. It has 2 different custom Encoders and one Decoder. 
+
+DenseNet passes given point cloud through first Encoder; it extracts point features and global features. Second Encoder - Radius Encoder - extracts local points features; for extracting local point features has been written a function that detects the nearest points in a circle of radius r - for every point in given point cloud(it extracts 3 times - for radius = 0.03, 0.04, 0.05). 
+
+Then, DenceNet concatenate all features and pass them through Decoder. 
+
+Also, was written a function that generates point cloud of n * 2^k points.
+
+This Model, Encoders, Decoders, functions and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models_v2).
+
+### Installing kaolin lib:
+(also [here](https://kaolin.readthedocs.io/en/latest/index.html) is documentation)
+```console
+foo@bar:~$ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121
+foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.1.1_cu121.html
+```
