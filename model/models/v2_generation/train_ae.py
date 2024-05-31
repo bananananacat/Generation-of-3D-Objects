@@ -2,8 +2,8 @@ import torch
 import kaolin
 import pickle
 
+from loaders import BatchGen
 from utils import EncoderDecoder
-from utils.loaders.batch_gen import BatchGen
 from utils.losses import point_loss
 from utils import valid_ae
 

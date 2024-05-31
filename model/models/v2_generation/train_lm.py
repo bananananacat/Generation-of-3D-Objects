@@ -2,10 +2,10 @@ import torch
 import pickle
 import torch.nn as nn
 
+from loaders import BatchGen
 from utils import ImageEncoder
 from utils import EncoderDecoder
 from utils import valid_lm
-from utils.loaders.batch_gen import BatchGen
 
 from paths import *
 
