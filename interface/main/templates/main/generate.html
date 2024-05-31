@@ -1,0 +1,21 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Создание 3D модели{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h2>Загрузите ваши фотографии</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-warning">Загрузить</button>
+    </form>
+
+    {% if success %}
+        <h2>3D модель успешно создана!</h2>
+        <p>Скачайте вашу модель по следующей ссылке:</p>
+        <a href="{{ model_path }}" class="btn btn-warning">Скачать 3D модель</a>
+    {% endif %}
+
+</div>
+{% endblock %}
