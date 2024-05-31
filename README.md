@@ -31,7 +31,7 @@ This model is working with quality of point clouds: for example, for given 1024 
 
 DenseNet passes given point cloud through first Encoder; it extracts point features and global features. Second Encoder - Radius Encoder - extracts local points features; for extracting local point features has been written a function that detects the nearest points in a circle of radius r - for every point in given point cloud(it extracts 3 times - for radius = 0.03, 0.04, 0.05). Then, DenceNet concatenate all features and pass them through Decoder. Also, was written a function that generates point cloud of n * 2^k points.
 
-This Model, Encoders, Decoders, functions and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models_v2).
+This Model, Encoders, Decoders, functions and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/densenet).
 
 ### Losses && Metrics
 
