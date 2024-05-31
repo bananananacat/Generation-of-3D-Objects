@@ -22,8 +22,13 @@ foo@bar:~$ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --inde
 foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.1.1_cu121.html
 ```
 
-### #TODO NKH_Model
+### Latent matching model
 
+Generate dot clouds from n images. Firtsly I train autoencoder from dots cloud to same dots cloud. This part using 1D convolutional
+encoder and fully-connected decoder. After that I train image convolutional encoder and latent matching autoencoder encoder and image 
+encoder. 
+
+This Model, Encoders, Decoders, Batch loader and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/v2_generation)
 
 ### Dense model
 
@@ -35,7 +40,9 @@ This Model, Encoders, Decoders, functions and train script are locating in [here
 
 ### Losses && Metrics
 
-For loss we decided to use Chamfer Distance(you can import it from kaolin lib), because it suits the purpose of our task and is faster than, for example, EMD loss. Also, was written custom point loss(you can see it in [here](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/models/v2_generation/utils/losses.py)) - it punishes for many points nearby. F score was used as metric to evaluate quality of point clouds.
+For loss we decided to use Chamfer Distance(you can import it from kaolin lib), because it suits the purpose of our task and is faster than, for example, EMD loss. F score was used as metric to evaluate quality of point clouds.
+
+Alse we combine Chamfer loss with custom point loss, which prevents points from accumulating in one place(you can see it in [here](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/models/v2_generation/utils/losses.py))
 
 ### Dataset
 
