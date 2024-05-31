@@ -2,11 +2,11 @@ import os
 import torch 
 import matplotlib.pyplot as plt
 
+from loaders import ValidLoader
 from utils import ImageEncoder
 from utils import EncoderDecoder
-from utils.loaders import ValidLoader
 
-from .paths import *
+from paths import *
 
 
 if __name__ == "__main__":
