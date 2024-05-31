@@ -23,4 +23,5 @@ from torchvision import transforms
 from PIL import Image
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import NearestNeighbors
 from tqdm.auto import tqdm

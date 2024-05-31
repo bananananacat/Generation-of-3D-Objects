@@ -1,4 +1,6 @@
-class Encoder(nn.Module):
+#Encoder for extracting local features
+
+class RadiusEncoder(nn.Module):
     def __init__(self, input_size, n_filters=[32, 128, 512, 2048, 512, 128, 64]): #n_filters[-1], (n/2**n_filters >= 1)
         super().__init__()
         n_layers = len(n_filters)
@@ -10,10 +12,8 @@ class Encoder(nn.Module):
 
     def forward(self, x):
         n = x.shape[2]
-        for conv, pool, drop in zip(self.encoder, self.pools, self.dropouts):
+        for conv, drop in zip(self.encoder, self.dropouts):
             x = conv(x)
             x = drop(x)
-            x = pool(x)
             x = F.relu(x)
-        x = torch.mean(x, dim=2)
         return x
