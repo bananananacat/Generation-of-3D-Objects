@@ -21,6 +21,7 @@ Our goal is a website with models, that generate a point cloud from given any nu
 foo@bar:~$ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121
 foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.1.1_cu121.html
 ```
+
 ### Latent matching model
 
 Generate dot clouds from n images. Firtsly I train autoencoder from dots cloud to same dots cloud. This part using 1D convolutional
@@ -28,7 +29,6 @@ encoder and fully-connected decoder. After that I train image convolutional enco
 encoder. 
 
 This Model, Encoders, Decoders, Batch loader and train script are locating in [here](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/v2_generation)
-
 
 ### Dense model
 
@@ -46,5 +46,5 @@ Alse we combine Chamfer loss with custom point loss, which prevents points from 
 
 ### Dataset
 
-We create our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset 
+We create our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset #TODO написать что для трейна что для валидации
 There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera & lights, functions to create dataset, etc.
