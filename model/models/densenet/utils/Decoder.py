@@ -1,21 +1,64 @@
-class Decoder(nn.Module):
-    def __init__(self, input_size, layer_sizes=[512, 1024, 2048, 1024, 512, 3]):
-        super().__init__()
-        n_layers = len(layer_sizes)
-        self.decoder = nn.ModuleList()
-        for i in range(n_layers - 1):
-            if i == 0:
-                self.decoder.append(nn.Conv1d(input_size, layer_sizes[i], 2, stride=2))
-            else:
-                self.decoder.append(nn.Conv1d(layer_sizes[i - 1], layer_sizes[i], 2, stride=2))
-
-            self.decoder.append(nn.ConvTranspose1d(layer_sizes[i], layer_sizes[i], 2, stride=2))
-            self.decoder.append(nn.ReLU())
-
-        self.out = nn.Conv1d(layer_sizes[-2], layer_sizes[-1], 1)
+class DecoderBlock(nn.Module):
+    def __init__(self, embed_size, heads, forward_expansion, dropout, device):
+        super(DecoderBlock, self).__init__()
+        self.transformer_block = TransformerBlock(
+            embed_size,
+            heads,
+            dropout,
+            forward_expansion,
+            device=device,
+        )
+        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
-        for layer in self.decoder:
-            x = layer(x)
-        x = self.out(x)
+        x = self.transformer_block(x)
+        x = self.dropout(x)
         return x
+
+
+class Decoder(nn.Module):
+    def __init__(
+        self,
+        input_size,
+        embed_size,
+        num_layers,
+        heads,
+        forward_expansion,
+        dropout,
+        device,
+    ):
+        super(Decoder, self).__init__()
+        self.device = device
+        self.embedding = nn.Linear(input_size, embed_size)
+
+        self.layers = nn.ModuleList(
+            [
+                DecoderBlock(embed_size // heads,
+                             heads,
+                             forward_expansion,
+                             dropout,
+                             device)
+                for _ in range(num_layers)
+            ]
+        )
+        self.norms = nn.ModuleList(
+            [
+                nn.LayerNorm(embed_size)
+                for _ in range(num_layers)
+            ]
+        )
+        self.fc_out = nn.Linear(embed_size, 3)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        N, seq_length, _ = x.shape
+        positions = torch.arange(0, seq_length).expand(N, seq_length).to(self.device)
+        x = self.embedding(x)
+        out = x
+        for layer, norm in zip(self.layers, self.norms):
+            out = layer(out) + x
+            out = norm(out)
+
+        out = self.fc_out(out)
+
+        return out
