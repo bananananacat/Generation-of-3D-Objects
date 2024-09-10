@@ -8,6 +8,7 @@ class Encoder(nn.Module):
         device,
         forward_expansion,
         dropout,
+        num_near_points,
     ):
 
         super(Encoder, self).__init__()
