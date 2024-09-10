@@ -1,8 +1,9 @@
 class CERMIT(nn.Module):
-    def __init__(self, input_size, upsampling_factor, embed_size=64, device="cuda"):
+    def __init__(self, input_size, upsampling_factor, num_near_points, embed_size=64, device="cuda"):
         super(QualityNet, self).__init__()
         self.upsampling_factor = upsampling_factor
         self.device = device
+        self.num_near_points = num_near_points
 
         self.encoder = Encoder(
             input_size=input_size,
@@ -12,16 +13,18 @@ class CERMIT(nn.Module):
             device=device,
             forward_expansion=2,
             dropout=0,
+            num_near_points=num_near_points,
         )
 
         self.radius_encoder = Encoder(
-            input_size=input_size + 3 * 10,
+            input_size=input_size + 3 * num_near_points,
             embed_size=embed_size,
             num_layers=6,
             heads=8,
             device=device,
             forward_expansion=2,
             dropout=0,
+            num_near_points=num_near_points,
         )
 
         self.decoder = Decoder(
@@ -47,7 +50,7 @@ class CERMIT(nn.Module):
 
         concat_feat = torch.cat([point_feat, global_feat], dim=2)
         for i in range(3):
-            near_points = get_nearest_points(pcl.cpu(), radius=0.03 + i / 100, num_near_points=10, device=self.device)
+            near_points = get_nearest_points(pcl.cpu(), radius=0.03 + i / 100, num_near_points = self.num_near_points, device=self.device)
             data = concatenate_with_pcl(pcl, near_points, self.device)
             local_feat = self.radius_encoder(data)
             local_feat = local_feat.unsqueeze(2).repeat(1, 1, self.upsampling_factor, 1)
