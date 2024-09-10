@@ -1,6 +1,6 @@
 class CERMIT(nn.Module):
     def __init__(self, input_size, upsampling_factor, num_near_points, embed_size=64, device="cuda"):
-        super(QualityNet, self).__init__()
+        super(CERMIT, self).__init__()
         self.upsampling_factor = upsampling_factor
         self.device = device
         self.num_near_points = num_near_points
