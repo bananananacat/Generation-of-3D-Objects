@@ -1,6 +1,6 @@
-class PadiiNet(nn.Module):
+class PreCERMIT(nn.Module):
     def __init__(self, embed_size=64, device="cuda"):
-        super(PadiiNet, self).__init__()
+        super(PreCERMIT, self).__init__()
         self.device = device
 
         self.encoder = ViTEncoder(
