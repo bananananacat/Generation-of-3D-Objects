@@ -1,49 +1,59 @@
+#for this project: torch=1.12.1+cu116, torchaudio=0.12.1+cu116, torchvision=0.13.1+cu116
+#kaolin lib works with 'cuda'
+import kaolin
+
+import random
+import os
+import re
+import sys
+import json
+import time
+import zipfile
+import pickle
+import math
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from PIL import Image
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+
+from torch.utils.data import DataLoader, Dataset
+from torchvision import transforms
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
+from PIL import Image
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.model_selection import train_test_split
+from einops import rearrange, repeat, reduce, pack, unpack
+from einops.layers.torch import Rearrange, Reduce
+from sklearn.neighbors import NearestNeighbors
+from transformers import get_cosine_with_hard_restarts_schedule_with_warmup
+
+from utils.CustomDataLoader import *
+from utils.attention import *
+from utils.ViTEncoder import *
+from utils.Decoder import *
+from utils.PreCERMIT import *
+from val import *
+from utils.point_loss import *
+from utils.BatchGen_PreCERMIT import *
+
+
 if __name__ == "__main__":
-    shapenet_id_to_category = {
-        '02691156': 'airplane',
-        '02828884': 'bench',
-        '02933112': 'cabinet',
-        '02958343': 'car',
-        '03001627': 'chair',
-        '03211117': 'monitor',
-        '03636649': 'lamp',
-        '03691459': 'speaker',
-        '04090263': 'rifle',
-        '04256520': 'sofa',
-        '04379243': 'table',
-        '04401088': 'telephone',
-        '04530566': 'vessel'
-    }
 
-    shapenet_category_to_id = {
-        'airplane': '02691156',
-        'bench' : '02828884',
-        'cabinet' : '02933112',
-        'car' : '02958343',
-        'chair' : '03001627',
-        'lamp' : '03636649',
-        'monitor' : '03211117',
-        'rifle' : '04090263',
-        'sofa' : '04256520',
-        'speaker' : '03691459',
-        'table' : '04379243',
-        'telephone' : '04401088',
-        'vessel' : '04530566'
-    }
+    save_dir = 'path to save model directory'
+    save_nums_dir = 'path to save dicts with nums directory'
 
-    save_dir = '/model'
-    save_nums_dir = '/nums'
+    pcl_path = 'path to point cloud dataset(we used ShapeNet, citing is in paper)'
+    json_path = 'path to splits dataset(we used ShapeNet, citing is in paper)'
 
-    upsampling_factor = 2
-    input_size = 3
+    img_path = "path to images dataset(we used ShapeNet, citing is in paper)"
 
-    pcl_path = '/ShapeNet_pointclouds/ShapeNet_pointclouds'
-    json_path = '/splits/splits/train_models.json'
-
-    img_path = "/home/aysurkov/Generation_of_pointclouds/ShapeNetRendering/ShapeNetRendering"
-
-    val_pcl_path = '/ShapeNet_pointclouds/ShapeNet_pointclouds'
-    val_json_path = '/splits/splits/val_models.json'
+    val_pcl_path = 'path to validation dataset / path to point cloud dataset(we used ShapeNet, citing is in paper)'
+    val_json_path = 'path to validation dataset / path to splits dataset(we used ShapeNet, citing is in paper)'
 
     params_train = {'batch_size': 4, 'shuffle': True}
     params_val = {'batch_size': 4, 'shuffle': False}
@@ -55,8 +65,7 @@ if __name__ == "__main__":
     precermit = precermit.to('cuda')
 
     optim = torch.optim.Adam(precermit.parameters(), lr=1e-4)
-    scheduler = get_cosine_with_hard_restarts_schedule_with_warmup(optim,
-        num_warmup_steps= 150, num_training_steps=len(training_generator), num_cycles=2)
+    #scheduler = get_cosine_with_hard_restarts_schedule_with_warmup(optim, num_warmup_steps= 150, num_training_steps=len(training_generator), num_cycles=2)
 
     points_loss_val = 0.01
     counter_ep = 1
@@ -93,7 +102,7 @@ if __name__ == "__main__":
             loss.backward()
             torch.nn.utils.clip_grad_value_(precermit.parameters(), clip_value=1.0)
             optim.step()
-            scheduler.step()
+            #scheduler.step()
 
         score1, score2, loss_mean = val(precermit, valid_generator)
         print(f"epoch = {counter_ep}, score1 = {score1.item()}, score2 = {score2.item()}, loss_val_mean = {loss_mean.item()}")
