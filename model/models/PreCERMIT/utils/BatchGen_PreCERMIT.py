@@ -1,3 +1,70 @@
+#for this project: torch=1.12.1+cu116, torchaudio=0.12.1+cu116, torchvision=0.13.1+cu116
+import kaolin
+
+import random
+import os
+import re
+import sys
+import json
+import time
+import zipfile
+import pickle
+import math
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from PIL import Image
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+
+from torch.utils.data import DataLoader, Dataset
+from torchvision import transforms
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
+from PIL import Image
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.model_selection import train_test_split
+from einops import rearrange, repeat, reduce, pack, unpack
+from einops.layers.torch import Rearrange, Reduce
+from sklearn.neighbors import NearestNeighbors
+from transformers import get_cosine_with_hard_restarts_schedule_with_warmup
+
+#Batch Generation for PreCERMIT net, (image RGB (512, 512) --- point cloud(1024 points))
+
+shapenet_id_to_category = {
+    '02691156': 'airplane',
+    '02828884': 'bench',
+    '02933112': 'cabinet',
+    '02958343': 'car',
+    '03001627': 'chair',
+    '03211117': 'monitor',
+    '03636649': 'lamp',
+    '03691459': 'speaker',
+    '04090263': 'rifle',
+    '04256520': 'sofa',
+    '04379243': 'table',
+    '04401088': 'telephone',
+    '04530566': 'vessel'
+}
+
+shapenet_category_to_id = {
+    'airplane': '02691156',
+    'bench': '02828884',
+    'cabinet': '02933112',
+    'car': '02958343',
+    'chair'	: '03001627',
+    'lamp'		: '03636649',
+    'monitor'	: '03211117',
+    'rifle'		: '04090263',
+    'sofa'		: '04256520',
+    'speaker'	: '03691459',
+    'table'		: '04379243',
+    'telephone'	: '04401088',
+    'vessel'	: '04530566'
+}
+
 class BatchGen:
 
     def __init__(self, json_path, image_directory, dots_directory, dots_size=1024):
