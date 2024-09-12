@@ -1,4 +1,4 @@
-#Big readme update soon!
+#Big readme update soon! At this point, the paper with the code has been submitted to a computer vision conference.
 
 ### Installing Requarements
 
@@ -13,19 +13,21 @@ foo@bar:~$ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --inde
 foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.1.1_cu121.html
 ```
 
-### Latent matching model
+### PreCERMIT model
 
-big update soon
+This model generates point cloud with 1024 points from given arbitrary number of photos/renders from different views.
 
 directory with model with all scripts: https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/PreCERMIT
 
-### Dense model
+### CERMIT model
+
+This model generates point cloud with N*k points from given point cloud with N points(quality enchansment).
 
 directory with model with all scripts: https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/CERMIT
 
 ### Losses && Metrics
 
-big update soon
+update soon
 
 ### Dataset
 
