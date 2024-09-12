@@ -16,6 +16,7 @@ foo@bar:~$ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amaz
 ### Latent matching model
 
 big update soon
+
 directory with model with all scripts: https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/PreCERMIT
 
 ### Dense model
