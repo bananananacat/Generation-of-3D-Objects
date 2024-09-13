@@ -21,7 +21,7 @@ directory with model with all scripts: https://github.com/bananananacat/Generati
 
 ### CERMIT model
 
-This model generates point cloud with N*k points from given point cloud with N points(quality enchansment).
+This model generates point cloud with N*k points from given point cloud with N points(quality enhansment).
 
 directory with model with all scripts: https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/models/CERMIT
 
