@@ -1,5 +1,3 @@
-#Big readme update soon! At this point, the paper with the code has been submitted to a computer vision conference.
-
 ### Installing Requarements
 
 ```console
@@ -27,7 +25,7 @@ directory with model with all scripts: https://github.com/bananananacat/Generati
 
 ### Losses && Metrics
 
-update soon
+You can read all metrics in [paper](https://github.com/bananananacat/Generation-of-3D-Objects/Paper.pdf)
 
 ### Dataset
 
