@@ -31,3 +31,9 @@ You can read all metrics in [paper](https://github.com/bananananacat/Generation-
 
 We created our own [dataset](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/model/data/datasets.md) and used ShapeNet dataset.
 There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objects/tree/main/model/data/data_collection) - render functions, functions to work with camera and lights, functions to create dataset, etc.
+
+## Paper
+
+Paper got 2 weak rejects and 1 strong reject, the main drawback was that we didn't have time to complete some of the experiments and write them down in the paper :(
+
+Despite this, the idea of ​​the architectures(PreCERMIT + CERMIT) was good
