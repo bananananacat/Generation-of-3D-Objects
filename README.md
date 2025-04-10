@@ -25,7 +25,7 @@ directory with model with all scripts: https://github.com/bananananacat/Generati
 
 ### Losses && Metrics
 
-You can read all metrics in [paper](https://github.com/bananananacat/Generation-of-3D-Objects/Paper.pdf)
+You can read all metrics in [paper](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/Paper.pdf)
 
 ### Dataset
 
