@@ -34,6 +34,6 @@ There are some [scripts](https://github.com/bananananacat/Generation-of-3D-Objec
 
 ## Paper
 
-Paper got 2 weak rejects and 1 strong reject, the main drawback was that we didn't have time to complete some of the experiments and write them down in the paper :(
+[Paper](https://github.com/bananananacat/Generation-of-3D-Objects/blob/main/Paper.pdf) got 2 weak rejects and 1 strong reject, the main drawback was that we didn't have time to complete some of the experiments and write them down in the paper :(
 
 Despite this, the idea of ​​the architectures(PreCERMIT + CERMIT) was good
